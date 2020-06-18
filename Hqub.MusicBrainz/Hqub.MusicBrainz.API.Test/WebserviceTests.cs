@@ -56,8 +56,10 @@ namespace Hqub.MusicBrainz.API.Test
 
             var artist = artists.First();
 
-            var releases = (await Release.BrowseAsync("artist", artist.Id, 40)).Items;
-            Assert.AreEqual(releases.Count, 40);
+            var releaseList = (await Release.BrowseAsync("artist", artist.Id, 40));
+
+            Assert.IsTrue(releaseList.Count > 0);
+            Assert.AreEqual(releaseList.Items.Count, 40);
         }
 
         [Test]
